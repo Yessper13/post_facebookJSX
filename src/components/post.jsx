@@ -2,6 +2,9 @@
 import {useState, useEffect} from "react";
 // Importamos el componente CommentForm para mostrar el formulario de comentarios
 import CommentForm from "./commentform";
+// Importamos el componente listcomment (no se usa en este código)
+import ListComment from "./listcomment";
+
 
 // Definimos el componente funcional Post
 let Post = () => {
@@ -18,6 +21,23 @@ let Post = () => {
   // Mostrar en consola el estado del botón de comentarios
     //console.log(btnComment);
     
+  // funccion para obtener comentarios del formulario
+  let [textComment, setTextComment] = useState("");
+  let getCommentData = (comment)=>{setTextComment(comment);}
+
+    // Listado de Comentarios
+   let [listData, setListData] = useState([]);
+    //comprobar si hay un nuevo comentario
+    useEffect(()=>{
+      //agregar el nuevo comentario al listado
+    if (textComment)
+    {
+      setListData([
+        ...listData,
+        {id: Date.now(), text: textComment}
+      ])    }
+    }, [textComment]);
+
   return (
     // Fragmento principal del componente
     <>
@@ -36,7 +56,7 @@ let Post = () => {
             <ul className="list-group list-group-flush" >
             {/* Primer elemento: muestra likes y comentarios */}
             <li className="list-group-item d-flex justify-content-around">
-              <span>👌😁❤️ {like}</span> <span>2 mil💬</span> 
+              <span>👌😁❤️ {like}</span> <span>{listData.length}💬</span> 
             </li>
             {/* Segundo elemento: botones para dar like y mostrar comentarios */}
             <li className="list-group-item d-flex justify-content-around">
@@ -49,8 +69,9 @@ let Post = () => {
             </ul>
             {/* Pie de la tarjeta: muestra el formulario de comentarios si btnComment es true */}
             <div className="card-footer">
-              { btnComment === true ? <CommentForm /> : ""}
+              { btnComment === true ? <CommentForm getCommentData={getCommentData}/> : ""}
             </div>
+            <ListComment listComData = {listData} />  
       </div>
     </>
   );

@@ -1,12 +1,14 @@
 
-let ListComment = ()=> {
+let ListComment = ({listComData})=> {
     return(
-    <>
-      <h1>Componente Lista Comentario</h1>
-      <br />
-    </>
-
+        <ul className="list-group list-group-flush">
+          {listComData.map((list) => (
+            <li key={list.id} className="list-group-item d-flex justify-content-around">
+              {list.text}
+            </li>
+          ))}
+        </ul>
     );
 };
 
-export default ListComment;
+export default ListComment; 
