@@ -5,6 +5,8 @@ import CommentForm from "./commentform";
 // Importamos el componente listcomment (no se usa en este código)
 import ListComment from "./listcomment";
 
+import "./Post.css"
+
 
 // Definimos el componente funcional Post
 let Post = () => {
@@ -50,7 +52,7 @@ let Post = () => {
                 <p className="card-text">
                 El viejo CRACKDONA </p>
                 {/* Imagen del post */}
-                <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyehriiZQJdINBfjlpJc9oSF8dfPUj6mdi_A&s"} className="card-img-top" alt="..." />
+                <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyehriiZQJdINBfjlpJc9oSF8dfPUj6mdi_A&s"} className="card-img-top" style={{ width: "260px" , height: "300px" }} />
             </div>
             {/* Lista de elementos de la tarjeta */}
             <ul className="list-group list-group-flush" >
